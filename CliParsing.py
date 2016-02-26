@@ -28,10 +28,12 @@ open ocr engines to extract text from scans with a low readability.""")
     arg_parser.add_argument('-f',
                             nargs='+',
                             metavar='FILE',
+                            default=[],
                             help='PDF files to be read (supports unix globs)')
 
     arg_parser.add_argument('-o',
                             metavar='FILE',
+                            default='ocra.csv',
                             help='CSV output file name')
 
     arg_parser.add_argument('-e',
@@ -39,6 +41,8 @@ open ocr engines to extract text from scans with a low readability.""")
                             choices=('tesseract', 'cuneiform',
                                      'gocr', 'ocrad'),
                             metavar='ENGINE',
+                            default=['tesseract', 'cuneiform',
+                                     'gocr', 'ocrad'],
                             help='OCR engines to be used. Choices: '
                                  '(tesseract, cuneiform, gocr, ocrad)')
 
@@ -52,4 +56,4 @@ open ocr engines to extract text from scans with a low readability.""")
 def cli_args():
     arg_parser = default_arg_parser()
     args = arg_parser.parse_args()
-    return args
+    return vars(args)
