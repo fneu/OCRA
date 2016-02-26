@@ -1,7 +1,6 @@
 #!/usr/bin/env python2
 import CliParsing
 import Converting
-import glob
 import shutil
 import tempfile
 
