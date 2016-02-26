@@ -60,3 +60,18 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+
+# Examples that should not be available online:
+examples/
+
+# Kate temp and backup files
+*.kate-swp
+
+# coala configuration files
+.coafile
+
+# Dolphin stuff (I guess?)
+.directory
+
+#PyCharm stuff
+.idea
