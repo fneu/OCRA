@@ -23,6 +23,6 @@ def pdf_to_tiff(source_pdf_list, destination, dpi=300):
                                    file_name, new_file_name])
 
         if ret_val == 0:  # conversion completed successfully
-            new_file_names.append(new_file_name)
+            new_file_names.append(new_file_name + ".tif")
 
     return new_file_names
