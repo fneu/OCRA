@@ -165,15 +165,22 @@ def split_lines(rectangle):
     return line_rectangle_list
 
 
-def write_beautiful_picture(file_name):
+def crop_lines(file_name):
     image = cv2.imread(file_name)
     text_areas = get_rectangles(image)
     blocks = group_rectangles(text_areas)
     text_blocks = trim_groups(blocks)
+
+    page_crops = []
+
     for tb in text_blocks:
         line_rects = split_lines(tb.boundary())
+        entry_crops = []
 
-        for lr in line_rects:
-            draw_rectangle(image, lr, (255, 0, 0), 3)
+        for lt in line_rects:
+            # NOTE: its [y: y + h, x: x + w] and *not* [x: x + w, y: y + h]
+            rect_crop = image[lt.y: lt.y+lt.h, lt.x:lt.x+lt.w]
+            entry_crops.append(rect_crop)
+        page_crops.append(entry_crops)
 
-    cv2.imwrite("something.tif", image)
+    return page_crops
