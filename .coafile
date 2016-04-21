@@ -1,0 +1,35 @@
+[Default]
+files = *.py, coalib/**/*.py, ./coala, tests/**/*.py
+ignore =
+    tests/bearlib/languages/documentation/documentation_extraction_testdata/data.py,
+    tests/collecting/collectors_test_dir/bears/incorrect_bear.py,
+
+max_line_length = 80
+use_spaces = True
+
+[python]
+# Patches may conflict with autopep8 so putting them in own section so they
+# will be executed sequentially; also we need the LineLengthBear to double
+# check the line length because PEP8Bear sometimes isn't able to correct the
+# linelength.
+bears = SpaceConsistencyBear, PyUnusedCodeBear
+
+[autopep8]
+bears = PEP8Bear
+
+[linelength]  # Sometimes autopep8 makes too long lines, need to check after!
+bears = LineLengthBear
+
+[DOCS]
+bears = SpaceConsistencyBear, LineLengthBear
+
+files = docs/**/*.rst, CONTRIBUTING.md, README.rst
+ignore = docs/API/**
+ignore_length_regex = ^.*https?://
+default_actions = SpaceConsistencyBear: ApplyPatchAction
+
+
+[Pylint]
+enabled = True
+
+bears = PyLintBear
